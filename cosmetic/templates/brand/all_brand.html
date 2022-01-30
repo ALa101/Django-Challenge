@@ -1,0 +1,119 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'brand/css/style.css' %}">
+    <title>Document</title>
+
+</head>
+
+<div class="home">
+
+    <div class="container">
+        <h1 class="headline">Brands </h1>
+
+    </div>
+
+    <!-- Columns -->
+
+    <div class="container" id="quotes-container">
+        <div class="row" id="Berand">
+            {%for brand_item in brand_set %}
+            <div class="three columns grid-cell">
+                <div class="featured-image featured-image-books"></div>
+
+                <div class="title" id="">
+                    <h4>
+                        <a href="/brand/{{brand_item.Name}}">{{ brand_item.Name }}</a>
+
+                    </h4>
+
+                </div>
+            </div>
+
+            {%endfor%}
+
+
+
+        </div>
+
+
+    </div>
+
+    <footer>
+        <div class="container" id="copyright-info">
+            <p>Copyright © ِALa ALsalam 2022. All rights reserved.</p>
+        </div>
+    </footer>
+
+</div>
+<!-- HomePage -->
+
+<div class="app">
+
+    <div class="hidden" id="page">
+
+        <!-- Navigation  -->
+
+        <section class="navigation">
+            <div class="container">
+                <div class="ten columns offset-by-one">
+                    <nav class="nav-bar">
+                        <ul class="nav-bar-menu">
+                            <li class="nav-bar-btn" id="nav-bar-home"><span class="nav-bar-btn-span" id="nav-bar-btn-home">Home</span></li>
+                            <li class="nav-bar-btn" id="nav-bar-books"><span class="nav-bar-btn-span" id="nav-bar-btn-books">Books</span></li>
+                            <li class="nav-bar-btn" id="nav-bar-startups"><span class="nav-bar-btn-span" id="nav-bar-btn-startups">Startups</span></li>
+                            <li class="nav-bar-btn" id="nav-bar-relationships"><span class="nav-bar-btn-span" id="nav-bar-btn-relationships">Relationships</span></li>
+                            <li class="nav-bar-btn" id="nav-bar-sports"><span class="nav-bar-btn-span" id="nav-bar-btn-sports">Sports</span></li>
+                            <li class="nav-bar-btn" id="nav-bar-movies"><span class="nav-bar-btn-span" id="nav-bar-btn-movies">Movies</span></li>
+                            <li class="nav-bar-btn" id="nav-bar-african"><span class="nav-bar-btn-span" id="nav-bar-btn-african">African</span></li>
+                            <li class="nav-bar-btn" id="nav-bar-life"><span class="nav-bar-btn-span" id="nav-bar-btn-life">Life</span></li>
+                            <li class="nav-bar-btn" id="nav-bar-christianity"><span class="nav-bar-btn-span" id="nav-bar-btn-christianity">Christianity</span></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <!-- End of Navigation -->
+
+        <!-- Quotes -->
+
+        <section class="main">
+
+            <div class="container">
+                <div class="ten columns offset-by-one">
+                    <div class="quotesBox" id="quotesBox">
+                        <blockquote>
+                            <span class="quote"></span>
+                            <span class="author"></span>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+
+            <!-- End of Quotes -->
+
+            <!-- Buttons -->
+
+            <div class="container">
+                <div class="eight columns offset-by-two">
+                    <div class="cta" id="cta">
+                        <button class="btn btn-quote" id="previous-quote">Previous Quote</button>
+                        <button class="btn btn-quote" id="next-quote">Next Quote</button>
+                        <a class="button btn btn-tweet">Tweet!</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>
+
+</html>
