@@ -15,3 +15,10 @@ def products_detilis(request, products_name ):
     context = {"products_set":products_item}
 
     return render(request,'products/products_deitils.html', context)
+
+def products_detilis2(request, products_name ):
+    products_item = Products.objects.get(Name=products_name)
+ 
+    context = {"products_set":products_item}
+
+    return render(request,'products/products_deitils2.html', context)

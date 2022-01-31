@@ -6,6 +6,9 @@ def home(request ):
    
     
     return render(request,'makeup/home.html')
+# def navbar(request):
+#     return render(request,'makeup/navbar.html' )
+
 
 # def makeup_choes(request):
 #     return render(request,'makeup/makeup.html')

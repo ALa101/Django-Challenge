@@ -24,6 +24,7 @@ from . import views
 
 urlpatterns = [
     path('',views.home, name='home'),
+    # path('navbar/',views.navbar, name='nav-bar'),
 
     # path("/products/",products.views.products,name='brands' ),
     # path("products/",include("products.urls"))

@@ -1,5 +1,25 @@
+from tkinter.tix import Tree
 from django.db import models
+from django.contrib.auth.models import User
 # from datetime import datetime
+
+class connect_us (models.Model):
+   user = models.ForeignKey(User,on_delete = models.SET_NULL , null= True)
+   topic = models.CharField(max_length=30,help_text='Enter topic') 
+   massesg = models.TextField( help_text='Enter massesg')
+
+
+   #Metadata
+#    class Meta :
+#        ordering = ['-connect_us']
+
+   #Methods
+#    def get_absolute_url(self):
+#        return reverse('url', args=[args])
+
+   def __str__(self):
+       return self.topic[0:10]
+
 
 # Create your models here.
 # class Brand(models.Model):
