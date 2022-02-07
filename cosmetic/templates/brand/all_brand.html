@@ -30,7 +30,7 @@
 
                 <div class="title" id="">
                     <h4>
-                        <a href="/brand/{{brand_item.Name}}">{{ brand_item.Name }}</a>
+                        <a href="{% url 'brand_detilis' brand_item.Name %}">{{ brand_item.Name }}</a>
 
                     </h4>
 
@@ -115,5 +115,7 @@
 
     </div>
 </div>
+
+<h1><a href="{% url 'add_brand' %}"> ADD brand </a></h1>
 
 </html>

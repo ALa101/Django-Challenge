@@ -21,99 +21,59 @@
     </div>
 
     <!-- Columns -->
+    {% include 'makeup/navbar.html'%}
 
     <div class="container" id="quotes-container">
+        <h5><a> Products count {{count}}</a></h5>
+        <a href="{% url 'products'%}"> ALL </a>
+
+        {% for type in products_type %}
+        <div>
+             <a href="{% url 'products'%}?q={{type.name}}">{{type.name}}</a>
+            </div>
+            {% endfor %}
         <div class="row" id="Berand">
+            
+                
             {%for products_item in products_set %}
             <div class="three columns grid-cell">
+                
+                {% if request.user.is_authenticated%}
+                   <a href="{%url 'delete_product' products_item.Name %}">delete2</a>
+                {% endif %}
+                <hr>
+                <h8>{{products_item.crate_time }}------</h8>
+                <h8>{{products_item.update_time|timesince}} ago </h8>
+                    
+               
                 <div class="featured-image featured-image-books"></div>
-
+                
                 <div class="title" id="">
                     <h4>
-                        <a href="/products/products_detilis2/{{products_item.Name}}">{{ products_item.Name }}</a>
+                        <a href="{% url 'products_detilis2' products_item.Name %}">{{ products_item.Name }}</a>
+
 
                     </h4>
 
                 </div>
             </div>
+            
 
             {%endfor%}
 
 
-
+            
         </div>
 
 
     </div>
-
-    <footer>
-        <div class="container" id="copyright-info">
-            <p>Copyright © ِALa ALsalam 2022. All rights reserved.</p>
-        </div>
-    </footer>
-
-</div>
-<!-- HomePage -->
-
-<div class="app">
-
-    <div class="hidden" id="page">
-
-        <!-- Navigation  -->
-
-        <section class="navigation">
-            <div class="container">
-                <div class="ten columns offset-by-one">
-                    <nav class="nav-bar">
-                        <ul class="nav-bar-menu">
-                            <li class="nav-bar-btn" id="nav-bar-home"><span class="nav-bar-btn-span" id="nav-bar-btn-home">Home</span></li>
-                            <li class="nav-bar-btn" id="nav-bar-books"><span class="nav-bar-btn-span" id="nav-bar-btn-books">Books</span></li>
-                            <li class="nav-bar-btn" id="nav-bar-startups"><span class="nav-bar-btn-span" id="nav-bar-btn-startups">Startups</span></li>
-                            <li class="nav-bar-btn" id="nav-bar-relationships"><span class="nav-bar-btn-span" id="nav-bar-btn-relationships">Relationships</span></li>
-                            <li class="nav-bar-btn" id="nav-bar-sports"><span class="nav-bar-btn-span" id="nav-bar-btn-sports">Sports</span></li>
-                            <li class="nav-bar-btn" id="nav-bar-movies"><span class="nav-bar-btn-span" id="nav-bar-btn-movies">Movies</span></li>
-                            <li class="nav-bar-btn" id="nav-bar-african"><span class="nav-bar-btn-span" id="nav-bar-btn-african">African</span></li>
-                            <li class="nav-bar-btn" id="nav-bar-life"><span class="nav-bar-btn-span" id="nav-bar-btn-life">Life</span></li>
-                            <li class="nav-bar-btn" id="nav-bar-christianity"><span class="nav-bar-btn-span" id="nav-bar-btn-christianity">Christianity</span></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </section>
-
-        <!-- End of Navigation -->
-
-        <!-- Quotes -->
-
-        <section class="main">
-
-            <div class="container">
-                <div class="ten columns offset-by-one">
-                    <div class="quotesBox" id="quotesBox">
-                        <blockquote>
-                            <span class="quote"></span>
-                            <span class="author"></span>
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-
-            <!-- End of Quotes -->
-
-            <!-- Buttons -->
-
-            <div class="container">
-                <div class="eight columns offset-by-two">
-                    <div class="cta" id="cta">
-                        <button class="btn btn-quote" id="previous-quote">Previous Quote</button>
-                        <button class="btn btn-quote" id="next-quote">Next Quote</button>
-                        <a class="button btn btn-tweet">Tweet!</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </div>
+    
+    
+    {% if request.user.is_authenticated%}
+    <h2><a href="{% url 'add_product'  %}">Add product</a></h2>
+    {% endif %}
+        
+        
 </div>
 
 </html>
