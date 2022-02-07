@@ -137,10 +137,9 @@
                                 <!--First slide-->
                                 <div class="carousel-item active">
                                     <div class="row">
-                                        brand_slid = brands
-                                        {% for brand in brand_slid|slice:"3"  %}
+                                        {% for brand in brands|slice:4  %}
                                         <div class="col-3 p-md-5">
-                                            <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_01.png" alt="{{brand.Name}}Logo"></a>
+                                            <a href="#"><img class="img-fluid brand-img" src="{{brand.image.url}}" alt="{{brand.Name}}Logo"></a>
                                         </div>
                                         {% endfor %}
                                     </div>
@@ -148,16 +147,7 @@
                                 <!--End First slide-->
 
                                 <!--Second slide-->
-                                <div class="carousel-item">
-                                    <div class="row">
-                                        {% for brand in brands  %}
-                                        <div class="col-3 p-md-5">
-                                            <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_01.png" alt="{{brand.Name}}Logo"></a>
-                                        </div>
-                                        {% endfor %}
-                                       
-                                    </div>
-                                </div>
+                                
                               
                                 <!--End Third slide-->
 
