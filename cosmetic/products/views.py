@@ -19,12 +19,14 @@ def products(request):
     products_set = Products.objects.filter(
              Q(type__name__icontains = q) |
              Q(Name__icontains = q)    
-             ).order_by('-update_time')
+             ).order_by('-crate_time')
     type = Type.objects.all()
     brands = Brand.objects.all()
     count = products_set.count()
+    
     context = {
                 "products_set":products_set,
+                
                 "products_type":type,
                 "count":count,
                  "brands" :brands,

@@ -1,4 +1,5 @@
 from datetime import datetime
+from email.policy import default
 from itertools import product
 from pickle import TRUE
 from tkinter import N
@@ -27,7 +28,7 @@ class Products(models.Model):
     Price = models.DecimalField(max_digits=10,decimal_places=2)
     Brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     type = models.ForeignKey(Type, on_delete=models.SET_NULL, null= True)
-    image = models.ImageField(upload_to="image/products/%y/%m/%d", null = True, blank = True)
+    image = models.ImageField(upload_to="image/products/%y/%m/%d", null = True, blank = True, default ="image/products/wk21_brushes_02.jpg" )
     crate_time = models.DateTimeField(auto_now_add= True, null=True)
     update_time = models.DateTimeField(auto_now = True, null= True)
 

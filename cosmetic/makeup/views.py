@@ -22,7 +22,7 @@ from django.db.models import Q
 
 def home(request ):
     q = request.GET.get('q') if request.GET.get('q') != None else ""
-
+    featured_product = Products.objects.all().order_by('id')
     products = Products.objects.filter(
              Q(type__name__icontains = q) |
              Q(Name__icontains = q) |
@@ -35,6 +35,7 @@ def home(request ):
     context = {
         "products":products,
         "Brands" :Brands,
+        "featured_product":featured_product,
     }
     return render(request,'makeup/home.html',context)
 

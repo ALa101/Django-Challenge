@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="row">
-            {% for product in products|slice:"3"  %}
+            {% for product in featured_product|slice:"3"  %}
             <div class="col-12 col-md-4 mb-4">
                 <div class="card h-100">
                     <a href="{% url 'products_detilis' product.id %}">

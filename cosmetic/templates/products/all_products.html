@@ -48,10 +48,15 @@
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
                                     <li><a class="btn btn-success text-white" href="{% url 'products_detilis' products_item.id %}"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="{% url 'products_detilis' products_item.id %}"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="{% url 'products_detilis' products_item.id %}"><i class="fas fa-cart-plus"></i></a></li>
+                                    {% if request.user.is_authenticated%}
+                                    <li><a class="btn btn-success text-white mt-2" href="{%url 'delete_product' products_item.id %}"><iclass="fa fa-trash-o" aria-hidden="true"></i></a></li>
+                                    {% endif %}
+                                    
+                                    <li><a class="btn btn-success text-white mt-2" href="{% url 'add_product'  %}"><i class="fa fa-plus-circle"></i></a></li>
                                 </ul>
                             </div>
+                            
+                         
                         </div>
                         <div class="card-body">
                             <a href="{% url 'products_detilis' products_item.id %}" class="h3 text-decoration-none">{{products_item.Name }}</a>
