@@ -29,7 +29,7 @@ def products(request):
                 "count":count,
                  "brands" :brands,
                  }
-    return render(request,'products/all_products1.html', context)
+    return render(request,'products/all_products.html', context)
 
 def Dashbord(request):
     products(request)
@@ -42,15 +42,14 @@ def Dashbord(request):
         }
     return render(request,'products/Dashbord.html',context)
 
-def products_detilis(request, products_name ):
-    products_item = Products.objects.get(Name=products_name)
- 
-    context = {"products_set":products_item}
-
+def products_detilis(request, products_id ):
+    products_item = Products.objects.get(id=products_id)
+    Related_Products = Products.objects.filter(Brand = products_item.Brand)
+    context = {"products_set":products_item,"Related_Products":Related_Products}
     return render(request,'products/products_deitils.html', context)
 
-def products_detilis2(request, products_name ):
-    products_item = Products.objects.get(Name=products_name)
+def products_detilis2(request, products_id ):
+    products_item = Products.objects.get(id=products_id)
     context = {"products_set":products_item}
     return render(request,'products/products_deitils2.html', context)
 
@@ -66,8 +65,8 @@ def add_product(request):
     return render(request, 'products/edit_product.html', context)
 
 @login_required(login_url=('login'))  
-def edit_product(request, products_name):
-    get_product = Products.objects.get(Name = products_name)
+def edit_product(request, products_id):
+    get_product = Products.objects.get(id = products_id)
     form = product_Form(instance=get_product)
 
     if request.method == 'POST':
@@ -78,8 +77,8 @@ def edit_product(request, products_name):
     context = {'form':form}
     return render(request, 'products/edit_product.html', context)
 @login_required(login_url=('login'))
-def delete(request,products_name):
-    get_product = Products.objects.get(Name = products_name)
+def delete(request,products_id):
+    get_product = Products.objects.get(id = products_id)
     if request.method == 'POST':
         get_product.delete()
         return redirect('products')

@@ -21,23 +21,23 @@ from django.db.models import Q
 # Create your views here.
 
 def home(request ):
-    return render(request,'makeup/home.html')
-def index(request ):
-    products = Products.objects.all()
+    q = request.GET.get('q') if request.GET.get('q') != None else ""
+
+    products = Products.objects.filter(
+             Q(type__name__icontains = q) |
+             Q(Name__icontains = q) |
+             Q(Brand__Name__icontains = q)
+             
+             
+               
+             ).order_by('-update_time')
     Brands = Brand.objects.all()
     context = {
         "products":products,
         "Brands" :Brands,
     }
-    return render(request,'makeup/index.html',context)
-def shop(request ):
-     products = Products.objects.all()
-     products_type = Type.objects.all()  
-     context = {
-        "products":products,
-        "products_type" :products_type,
-    }
-     return render(request,'pages/shop.html',context)
+    return render(request,'makeup/home.html',context)
+
 
      
 def about(request ):

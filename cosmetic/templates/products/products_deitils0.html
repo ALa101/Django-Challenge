@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'products/css/style2.css' %}">
+    <title>Document</title>
+
+</head>
+
+<div class="home">
+
+    <div class="container">
+        <h1 class="headline">Products </h1>
+
+    </div>
+
+    <!-- Columns -->
+
+    <div class="container" id="quotes-container">
+        <div class="row" id="Berand">
+
+            <div class="three columns grid-cell">
+                <div class="featured-image featured-image-books"></div>
+
+                <div class="title" id="">
+                    <h4>
+                        <a href="/products/{{products_item.Name}}">{{ products_set.Name }}</a>
+
+                    </h4>
+
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+
+    </div>
+
+    <footer>
+        <div class="container" id="copyright-info">
+            <p>Copyright © ِALa ALsalam 2022. All rights reserved.</p>
+        </div>
+    </footer>
+
+</div>
+<!-- HomePage -->
+
+
+
+</div>
+</div>
+
+</html>

@@ -11,11 +11,8 @@ urlpatterns = [
     path('register/', views.registerPage, name ='register'),
     path('logout/', views.logoutUser, name ='logout'),
     path('Dashbord/', views.Dashbord, name ='Dashbord'),
-    path("index/", views.index, name = 'index'),
-    path('shop/', views.shop, name ='shop'),
     path('about/', views.about, name ='about'),
     path('contact/', views.contact, name ='contact'),
-    path('shop_single/', views.shop_single, name ='shop_single'),
     # path('navbar/',views.navbar, name='nav-bar'),
 
     # path("/products/",products.views.products,name='brands' ),

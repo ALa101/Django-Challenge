@@ -1,110 +1,90 @@
-{% load static %} {% include 'makeup/navbar.html'%}
+{% extends 'makeup/base.html' %}
+{% load static %}
+{% block main_style %}
+<link rel="stylesheet" href="{%static 'makeup/css/style.css' %}">
+
+{% endblock main_style %}
+ {% block contain %}
 
 
+<!-- Start Banner Hero -->
+{% include "pages/main.html" %}
+<!-- End Banner Hero -->
 
 
-<div class="home">
-    <h1>Cosmetic Boutique <small>All your needs MAKEUP in one place </small></h1>
-    <div class="main-content">
-        <div class="palette__wrapper">
-            <div class="palette palette--one">
-                <div class="palette__cover">
-                    <div class="palette__cover__border"><span>All Prod ucts.</span></div>
-                </div>
-                <div class="palette__cover__top"></div>
-                <div class="palette__base">
-                    <div class="palette__shade"></div>
-                    <div class="palette__shade"></div>
-                    <div class="palette__shade"></div>
-                    <div class="palette__shade"></div>
-                    <div class="palette__shade"></div>
-                </div>
-            </div>
-            <h4> All Products
-                <a href="/products/all_products"><small> All Products</small>
-                    <!-- <a href="/products/"><small> All Products</small> -->
-
-                </a>
-            </h4>
-        </div>
-        <div class="palette__wrapper">
-            <div class="palette palette--two">
-                <div class="palette__cover">
-                    <div class="palette__cover__border"><span>hair care </span></div>
-                </div>
-                <div class="palette__cover__top"></div>
-                <div class="palette__base">
-                    <div class="palette__shade"></div>
-                    <div class="palette__shade"></div>
-                    <div class="palette__shade"></div>
-                    <div class="palette__shade"></div>
-                </div>
-            </div>
-            <h4>hair care products<small>see All</small></h4>
-        </div>
-        <div class="palette__wrapper">
-            <div class="palette palette--three">
-                <div class="palette__cover">
-                    <div class="palette__cover__border"><span>Skin care.</span></div>
-                </div>
-                <div class="palette__cover__top"></div>
-                <div class="palette__base">
-                    <div class="palette__shade"></div>
-                    <div class="palette__shade"></div>
-                    <div class="palette__shade"></div>
-                    <div class="palette__shade"></div>
-                    <div class="palette__shade"></div>
-                    <div class="palette__shade"></div>
-                    <div class="palette__shade"></div>
-                    <div class="palette__shade"></div>
-                </div>
-            </div>
-            <h4>Skin care products<small>see All</small></h4>
-        </div>
-        <div class="palette__wrapper">
-            <div class="palette palette--four">
-                <div class="palette__cover">
-                    <div class="palette__cover__border"><span>All Brands.</span></div>
-                </div>
-                <div class="palette__cover__top"></div>
-                <div class="palette__base">
-                    <div class="palette__shade"></div>
-                    <div class="palette__shade"></div>
-                    <div class="palette__shade"></div>
-                    <div class="palette__shade"></div>
-                    <div class="palette__shade"></div>
-                </div>
-            </div>
-            <h4>Brands
-                <a href="/brand/all_brands"><small>see All</small>
-                    <!-- <a href="/products/"><small> All Products</small> -->
-
-                </a>
-            </h4>
-        </div>
-
-
-        <div class="palette__wrapper">
-            <!-- <div class="palette palette--four">
-                <div class="palette__cover">
-                    <div class="palette__cover__border"><span>All Brands.</span></div>
-                </div>
-                <div class="palette__cover__top"></div>
-                <div class="palette__base">
-                    <div class="palette__shade"></div>
-                    <div class="palette__shade"></div>
-                    <div class="palette__shade"></div>
-
-
-                </div>
-            </div>
-            <h4>Brands<small>see All</small></h4> -->
+<!-- Start Categories of The Month -->
+<section class="container py-5">
+    <div class="row text-center pt-3">
+        <div class="col-lg-6 m-auto">
+            <h1 class="h1">Categories of The Month</h1>
+            <p>
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
         </div>
     </div>
+    <div class="row">
+        {% for product in products|slice:"3"  %}
+        <div class="col-12 col-md-4 p-5 mt-3">
+            <a href="#"><img src="{{ product.image.url}}" class="rounded-circle img-fluid border"></a>
+            <h5 class="text-center mt-3 mb-3">{{product.Name}}</h5>
+            <p class="text-center"><a class="btn btn-success" href="{% url 'products_detilis' product.id %}">Go Shop</a></p>
+        </div>
+        {% endfor %}
+        
+    </div>
+</section>
+<!-- End Categories of The Month -->
 
-</div>
-<h1><a href="{% url 'index' %}"> hame index  </a></h1>
-<h1><a href="{% url 'Dashbord' %}"> Dashbord  </a></h1>
-<h1><a href="{% url 'connect_us' %}"> Connect US </a></h1>
 
-<h1><a href="{% url 'add_brand' %}"> ADD brand </a></h1>
+<!-- Start Featured Product -->
+<section class="bg-light">
+    <div class="container py-5">
+        <div class="row text-center py-3">
+            <div class="col-lg-6 m-auto">
+                <h1 class="h1">Featured Product</h1>
+                <p>
+                    Reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            {% for product in products|slice:"3"  %}
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card h-100">
+                    <a href="{% url 'products_detilis' product.id %}">
+                        <img src="{{ product.image.url}}" class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <ul class="list-unstyled d-flex justify-content-between">
+                            <li>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-muted fa fa-star"></i>
+                                <i class="text-muted fa fa-star"></i>
+                            </li>
+                            <li class="text-muted text-right">${{product.Price}}   </li>
+                        </ul>
+                        <a href="{% url 'products_detilis' product.id %}" class="h2 text-decoration-none text-dark">{{product.Name}}</a>
+                        <p class="card-text">
+                            {{product.Descreption}}    
+                         </p>
+                        <p class="text-muted">{{product.update_time|timesince}} ago</p>
+                    </div>
+                </div>
+            </div>
+           
+            {% endfor %}
+            
+        </div>
+    </div>
+</section>
+<!-- End Featured Product -->
+
+
+<!-- Start Footer -->
+
+<!-- End Footer -->
+
+
+<!-- End Script -->{% endblock contain %}

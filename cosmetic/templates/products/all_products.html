@@ -1,79 +1,167 @@
+{% extends 'makeup/base.html' %}
+
 {% load static %}
+ {% block contain %}
+ <div class="container py-5">
+    <div class="row">
 
-<!DOCTYPE html>
-<html lang="en">
-
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{%static 'products/css/style.css' %}">
-    <title>Document</title>
-
-</head>
-
-<div class="home">
-
-    <div class="container">
-        <h1 class="headline">Products </h1>
-
-    </div>
-
-    <!-- Columns -->
-    {% include 'makeup/navbar.html'%}
-
-    <div class="container" id="quotes-container">
-        <h5><a> Products count {{count}}</a></h5>
-        <a href="{% url 'products'%}"> ALL </a>
-
-        {% for type in products_type %}
-        <div>
-             <a href="{% url 'products'%}?q={{type.name}}">{{type.name}}</a>
-            </div>
-            {% endfor %}
-        <div class="row" id="Berand">
-            
-                
-            {%for products_item in products_set %}
-            <div class="three columns grid-cell">
-                
-                {% if request.user.is_authenticated%}
-                   <a href="{%url 'delete_product' products_item.Name %}">delete2</a>
-                {% endif %}
-                <hr>
-                <h8>{{products_item.crate_time }}------</h8>
-                <h8>{{products_item.update_time|timesince}} ago </h8>
-                    
-               
-                <div class="featured-image featured-image-books"></div>
-                
-                <div class="title" id="">
-                    <h4>
-                        <a href="{% url 'products_detilis2' products_item.Name %}">{{ products_item.Name }}</a>
-
-
-                    </h4>
-
-                </div>
-            </div>
-            
-
-            {%endfor%}
-
-
-            
+        <div class="col-lg-3">
+            <h1 class="h2 pb-4"></h1>
+            <ul class="list-unstyled templatemo-accordion">
+                <li class="pb-3">
+                    <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                        Categories
+                        <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
+                    </a>
+                    <ul class="collapse show list-unstyled pl-3">
+                        <li><a class="text-decoration-none" href="{% url 'products'%}">All </a></li>
+                        {% for type in products_type %}
+                        <li><a class="text-decoration-none" href="{% url 'products'%}?q={{type.name}}">{{type.name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
         </div>
 
+        <div class="col-lg-9">
+            <div class="row">
+                <div class="col-md-6">
+        
+                </div>
+                <div class="col-md-6 pb-4">
+                    <div class="d-flex">
+                        <select class="form-control">
+                            <option>Featured</option>
+                            <option>A to Z</option>
+                            <option>Item</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {%for products_item in products_set %}                  
+               
+                <div class="col-md-4">
+                    <div class="card mb-4 product-wap rounded-0">
+                        <div class="card rounded-0">
+                            <img class="card-img rounded-0 img-fluid" src="{{products_item.image.url}}">
+                            <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                <ul class="list-unstyled">
+                                    <li><a class="btn btn-success text-white" href="{% url 'products_detilis' products_item.id %}"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="{% url 'products_detilis' products_item.id %}"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="{% url 'products_detilis' products_item.id %}"><i class="fas fa-cart-plus"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <a href="{% url 'products_detilis' products_item.id %}" class="h3 text-decoration-none">{{products_item.Name }}</a>
+                            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                                <li>{{products_item.update_time|timesince}} ago</li>
+                                <li class="pt-2">
+                                    <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
+                                    <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
+                                    <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
+                                    <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
+                                    <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
+                                </li>
+                            </ul>
+                            <ul class="list-unstyled d-flex justify-content-center mb-1">
+                                <li>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                </li>
+                            </ul>
+                            <p class="text-center mb-0">${{products_item.Price}}</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                {% endfor %}
+       
+            </div>
+            <div div="row">
+                <ul class="pagination pagination-lg justify-content-end">
+                    <li class="page-item disabled">
+                        <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="#" tabindex="-1">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="#">3</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
     </div>
-    
-    
-    {% if request.user.is_authenticated%}
-    <h2><a href="{% url 'add_product'  %}">Add product</a></h2>
-    {% endif %}
-        
-        
 </div>
+<!-- End Content -->
 
-</html>
+<!-- Start Brands -->
+<section class="bg-light py-5">
+    <div class="container my-4">
+        <div class="row text-center py-3">
+            <div class="col-lg-6 m-auto">
+                <h1 class="h1">Our Brands</h1>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    Lorem ipsum dolor sit amet.
+                </p>
+            </div>
+            <div class="col-lg-9 m-auto tempaltemo-carousel">
+                <div class="row d-flex flex-row">
+                    <!--Controls-->
+                    <div class="col-1 align-self-center">
+                        <a class="h1" href="#multi-item-example" role="button" data-bs-slide="prev">
+                            <i class="text-light fas fa-chevron-left"></i>
+                        </a>
+                    </div>
+                    <!--End Controls-->
+
+                    <!--Carousel Wrapper-->
+                    <div class="col">
+                        <div class="carousel slide carousel-multi-item pt-2 pt-md-0" id="multi-item-example" data-bs-ride="carousel">
+                            <!--Slides-->
+                            <div class="carousel-inner product-links-wap" role="listbox">
+
+                                <!--First slide-->
+                                <div class="carousel-item active">
+                                    <div class="row">
+                                        {% for brand in brands|slice:4  %}
+                                        <div class="col-3 p-md-5">
+                                            <a href="#"><img class="img-fluid brand-img" src="{{brand.image.url}}" alt="{{brand.Name}}Logo"></a>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <!--End First slide-->
+
+                                <!--Second slide-->
+                                
+                              
+                                <!--End Third slide-->
+
+                            </div>
+                            <!--End Slides-->
+                        </div>
+                    </div>
+                    <!--End Carousel Wrapper-->
+
+                    <!--Controls-->
+                    <div class="col-1 align-self-center">
+                        <a class="h1" href="#multi-item-example" role="button" data-bs-slide="next">
+                            <i class="text-light fas fa-chevron-right"></i>
+                        </a>
+                    </div>
+                    <!--End Controls-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+ {% endblock contain %}
+     

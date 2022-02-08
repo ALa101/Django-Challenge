@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'products/css/style.css' %}">
+    <title>Document</title>
+
+</head>
+
+<div class="home">
+
+    <div class="container">
+        <h1 class="headline">Products </h1>
+
+    </div>
+
+    <!-- Columns -->
+    {% include 'makeup/navbar.html'%}
+
+    <div class="container" id="quotes-container">
+        <h5><a> Products count {{count}}</a></h5>
+        <a href="{% url 'products'%}"> ALL </a>
+
+        {% for type in products_type %}
+        <div>
+             <a href="{% url 'products'%}?q={{type.name}}">{{type.name}}</a>
+            </div>
+            {% endfor %}
+        <div class="row" id="Berand">
+            
+                
+            {%for products_item in products_set %}
+            <div class="three columns grid-cell">
+                
+                {% if request.user.is_authenticated%}
+                   <a href="{%url 'delete_product' products_item.Name %}">delete2</a>
+                {% endif %}
+                <hr>
+                <h8>{{products_item.crate_time }}------</h8>
+                <h8>{{products_item.update_time|timesince}} ago </h8>
+                    
+               
+                <div class="featured-image featured-image-books"></div>
+                
+                <div class="title" id="">
+                    <h4>
+                        <a href="{% url 'products_detilis2' products_item.Name %}">{{ products_item.Name }}</a>
+
+
+                    </h4>
+
+                </div>
+            </div>
+            
+
+            {%endfor%}
+
+
+            
+        </div>
+
+
+    </div>
+    
+    
+    {% if request.user.is_authenticated%}
+    <h2><a href="{% url 'add_product'  %}">Add product</a></h2>
+    {% endif %}
+        
+        
+</div>
+
+</html>
